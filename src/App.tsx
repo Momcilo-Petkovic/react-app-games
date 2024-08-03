@@ -4,7 +4,7 @@
 import { useState } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
-
+import Weather from "./components/Weather";
 function App() {
   //let items = ["New York", "San Francisco", "London", "Paris"];
 
@@ -15,7 +15,7 @@ function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
 
   return (
-    <div>
+    <>
       {/* <ListGroup
         items={items}
         heading="Cities"
@@ -28,7 +28,9 @@ function App() {
       <Button onClick={() => setAlertVisibility(true)} color={"warning"}>
         Ayo
       </Button>
-    </div>
+
+      <Weather></Weather>
+    </>
   );
 }
 
