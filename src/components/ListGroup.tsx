@@ -1,5 +1,14 @@
-function ListGroup() {
-  let items = ["New York", "San Francisco", "London", "Paris"];
+import { useState } from "react";
+
+interface Props {
+  items: string[];
+  heading: string;
+  onSelectItem: (item: string) => void;
+}
+
+function ListGroup({ items, heading, onSelectItem }: Props) {
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
   /*items = [];
   if (items.length === 0) {
     return (
@@ -14,13 +23,20 @@ function ListGroup() {
     <>
       {/*items.length === 0 && <p>No item found</p>*/}
       {/*Same if from above just nested*/}
-      <h1>List</h1>
-      <ul className="list-group">
+      <h1>{heading}</h1>
+      <ul className={"list-group"}>
         {items.map((item, index) => (
           <li
-            className="list-group-item"
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
             key={item}
-            onClick={(event) => console.log(item, index)}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
           >
             {item}
           </li>
